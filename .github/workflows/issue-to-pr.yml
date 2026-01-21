@@ -2,7 +2,7 @@ name: Create PR from Story Issue
 
 on:
   issues:
-    types: [opened]
+    types: [opened, labeled]
 
 jobs:
   convert-to-pr:
@@ -14,9 +14,12 @@ jobs:
       pull-requests: write
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: master
 
-      - name: Create branch and JSON
+      - name: Create branch and JSON file
         env:
           ISSUE_NUMBER: ${{ github.event.issue.number }}
           ISSUE_TITLE: ${{ github.event.issue.title }}
@@ -52,4 +55,8 @@ jobs:
 
       - name: Create Pull Request
         run: |
-          gh pr create             --title "Story: ${{ github.event.issue.title }}"             --body "Auto-generated from issue #${{ github.event.issue.number }}"             --base main             --head story-${{ github.event.issue.number }}
+          gh pr create \
+            --title "Story: ${{ github.event.issue.title }}" \
+            --body "Auto-generated from issue #${{ github.event.issue.number }}" \
+            --base master \
+            --head story-${{ github.event.issue.number }}
