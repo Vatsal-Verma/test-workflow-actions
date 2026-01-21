@@ -5,11 +5,13 @@ document.getElementById("storyForm").addEventListener("submit", (e) => {
   const title = document.getElementById("title").value;
   const story = document.getElementById("story").value;
 
-  const body = `name: ${name}
+  const body = `
+name: ${name}
 title: ${title}
 
 story:
-${story}`;
+${story}
+`;
 
   const url =
     "https://github.com/Vatsal-Verma/test-workflow-actions/issues/new" +
