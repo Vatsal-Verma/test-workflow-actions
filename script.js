@@ -12,7 +12,7 @@ story:
 ${story}`;
 
   const url =
-    "https://github.com/Vatsal-Verma/test-github-workflow/issues/new" +
+    "https://github.com/Vatsal-Verma/test-workflow-actions/issues/new" +
     "?title=" + encodeURIComponent(`Story Submission: ${title}`) +
     "&body=" + encodeURIComponent(body) +
     "&labels=story-submission";
